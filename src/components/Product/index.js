@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Wrapper, Container, Price } from './styles'
+import { Wrapper, Container, Price, GridSpan } from './styles'
 
 const Product = ({
   data,
