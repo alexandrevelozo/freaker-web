@@ -10,7 +10,6 @@ import {
 
 const Order = ({
   data,
-  products,
   buttons,
   onDelete = () => {},
   onUpdate = () => {},
@@ -67,7 +66,7 @@ const Order = ({
         </span>
 
         <div>
-          {products.map(product => (
+          {data.products.map(product => (
             <span>{product.name}</span>
           ))}
         </div>

@@ -88,7 +88,7 @@ const Products = () => {
           </div>
 
           <div>
-            <label htmlFor="images">Url da imagem</label>
+            <label htmlFor="images">URL da imagem</label>
             <input
               type="text"
               value={image}

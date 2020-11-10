@@ -111,7 +111,6 @@ const CardsGrid = ({
             buttons={buttons}
             key={item.id}
             data={item}
-            products={item.products}
             onDelete={(id) => {
                 setFilteredReceivedData(filteredReceivedData.filter(item => item.id !== id))
                 setReceivedData(filteredReceivedData.filter(item => item.id !== id))
