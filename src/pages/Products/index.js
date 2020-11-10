@@ -18,7 +18,6 @@ import {
   Listing,
   Form,
   ButtonContainer,
-  Enter,
   Wrapper
 } from './styles'
 

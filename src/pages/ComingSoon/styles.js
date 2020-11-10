@@ -7,11 +7,11 @@ export const Container = styled.div`
 
   background: url('/images/coming-soon.svg') no-repeat 85% 50%;
 
-  @media screen and (max-width: 1785px) {
+  @media screen and (max-width: 1768px) {
     justify-content: flex-start;
 
     background: url('/images/coming-soon.svg') no-repeat 50% 90%;
-    background-size: 950px;
+    background-size: 750px;
   }
 
   height: 100vh;
@@ -54,4 +54,8 @@ export const Title = styled.h1`
   justify-content: center;
 
   font-size: 54px;
+
+  @media screen and (max-width: 1768px) {
+    font-size: 46px;
+  }
 `

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory} from 'react-router-dom'
 
 import * as ROUTES from '../../../constants/routes'
@@ -19,17 +19,25 @@ const EditUser = (props) => {
 
   const { id } = props.match.params
   const [user, setUser] = useState({
-    address: {},
+    address: {
+      street: '',
+      number: '',
+      neighborhood: '',
+      zipcode: '',
+      city: '',
+      state: '',
+      phone: ''
+    },
   })
 
-  const [name, setName] = useState('')
-  const [street, setStreet] = useState('')
-  const [number, setNumber] = useState('')
-  const [neighborhood, setNeighborhood] = useState('')
-  const [zipcode, setZipcode] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [phone, setPhone] = useState('')
+  const [name, setName] = useState(user.name)
+  const [street, setStreet] = useState(user.address.street)
+  const [number, setNumber] = useState()
+  const [neighborhood, setNeighborhood] = useState()
+  const [zipcode, setZipcode] = useState()
+  const [city, setCity] = useState()
+  const [state, setState] = useState()
+  const [phone, setPhone] = useState(user.phone)
 
   async function handleGetUsers() {
     const response = await api.get(`/users/${id}`)

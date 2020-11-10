@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Container from '../../components/Container'
@@ -20,9 +20,6 @@ import {
 } from './styles'
 
 const Users = () => {
-  const [notFound, setNotFound] = useState(false)
-  const [loading, setLoading] = useState(true)
-
   const history = useHistory()
 
   const [name, setName] = useState('')
