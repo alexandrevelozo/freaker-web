@@ -47,14 +47,22 @@ export const Container = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 18px;
+
+    font-weight: bold;
   }
 `
 
 export const Price = styled.div`
-  margin-top: 10px;
-  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+
+  padding: 10px;
 
   span {
     font-size: 16px;
   }
 `
+
+export const GridSpan = styled.div``

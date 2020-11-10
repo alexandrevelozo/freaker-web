@@ -20,12 +20,24 @@ const Product = ({
         <span>{data.name}</span>
 
         <Price>
-          <span>
+          <GridSpan>Preço de venda</GridSpan>
+          <GridSpan>
             {data.sale_price.toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL'
             })}
-          </span>
+          </GridSpan>
+          <GridSpan>Preço de custo</GridSpan>
+          <GridSpan>
+            {data.cost_price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              })}
+          </GridSpan>
+          <GridSpan>Estoque</GridSpan>
+          <GridSpan>
+            {data.stock} unidades
+          </GridSpan>
         </Price>
       </Container>
     </Wrapper>
