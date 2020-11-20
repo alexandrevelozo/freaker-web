@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 import * as ROUTES from '../../constants/routes'
 
@@ -12,6 +13,12 @@ import {
 } from './styles'
 
 const Landing = () => {
+  const history = useHistory()
+
+  const handleNavigation = () => {
+    history.push(ROUTES.ORDERS)
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -24,7 +31,7 @@ const Landing = () => {
         <p>Prestamos serviço para pessoas que buscam levar o seu restaurante para a internet.</p>
 
         <Button
-          to={ROUTES.ORDERS}
+          onClick={handleNavigation}
           icon="/images/icons/enter.svg"
           title="Quero gerenciar meu negócio"
         />
