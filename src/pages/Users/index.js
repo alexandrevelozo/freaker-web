@@ -31,7 +31,8 @@ const Users = () => {
   const [state, setState] = useState('')
   const [phone, setPhone] = useState('')
 
-  async function handleCreateUser() {
+  async function handleCreateUser(event) {
+    event.preventDefault()
 
     try {
       const data = {
