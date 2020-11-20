@@ -14,6 +14,24 @@ const Container = styled.div`
   @media screen and (max-width: 1100px) {
     max-width: 851px;
   }
+
+  .form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-top: 50px;
+
+    h1 {
+      padding-bottom: 6px;
+    }
+    p {
+      padding-bottom: 18px;
+    }
+  }
 `
 
 export default Container
