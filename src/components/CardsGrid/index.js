@@ -35,8 +35,10 @@ const CardsGrid = ({
       setFilteredReceivedData(response.data)
 
       setLoading(false)
+
+      console.log(selectedProducts)
     })
-  }, [])
+  }, []) // eslint-disable-line
 
   const handleSelectUser = (id) => {
     if (!selectable) return
