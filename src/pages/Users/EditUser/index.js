@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory} from 'react-router-dom'
+import { Form } from '@unform/web'
 
 import * as ROUTES from '../../../constants/routes'
 
@@ -11,64 +12,60 @@ import Profile from '../../../components/Profile'
 import NavBar from '../../../components/NavBar'
 import Button from '../../../components/Button'
 import Footer from '../../../components/Footer'
+import Input from '../../../components/Input'
 
-import { Form, Wrapper, ButtonContainer } from './styles'
+import { Wrapper, ButtonContainer } from './styles'
 
 const EditUser = (props) => {
   const history = useHistory()
 
   const { id } = props.match.params
   const [user, setUser] = useState({
+    name: String,
     address: {
-      street: '',
-      number: '',
-      neighborhood: '',
-      zipcode: '',
-      city: '',
-      state: '',
-      phone: ''
+      street: String,
+      number: String,
+      neighborhood: String,
+      zipcode: String,
+      city: String,
+      state: String
     },
+    phone: String
   })
 
-  const [name, setName] = useState(user.name)
-  const [street, setStreet] = useState(user.address.street)
-  const [number, setNumber] = useState()
-  const [neighborhood, setNeighborhood] = useState()
-  const [zipcode, setZipcode] = useState()
-  const [city, setCity] = useState()
-  const [state, setState] = useState()
-  const [phone, setPhone] = useState(user.phone)
+  useEffect(() => {
+    try {
+      const getAsync = async () => {
+        const { data } = await api.get(`/users/${id}`)
+        setUser(data)
+      }
+      getAsync()
+    } catch (err) {
+      console.log(err)
+    }
+  }, [id]) // eslint-disable-line
 
-  async function handleGetUsers() {
-    const response = await api.get(`/users/${id}`)
-    setUser(response.data)
+  const stateInitial = {
+    name: user.name,
+    address: {
+      street: user.address.street,
+      number: user.address.number,
+      neighborhood: user.address.neighborhood,
+      zipcode: user.address.zipcode,
+      city: user.address.city,
+      state: user.address.state,
+    },
+    phone: user.phone
   }
 
-  useEffect(() => {
-    handleGetUsers()
-  }, [])
-
-  async function handleUpdateUser() {
+  const handleUpdateUser = async (data) => {
     try {
-      const data = {
-        name,
-        address: {
-          street,
-          number,
-          neighborhood,
-          zipcode,
-          city,
-          state
-        },
-        phone
-      }
-
       await api.put(`/users/${id}`, data)
-
-      alert('Alteração realizada com sucesso!')
+      alert('Cliente atualizado com sucesso!')
       history.push(ROUTES.USERS)
-    } catch (error) {
-      alert('Ocorreu um erro ao atualizar.')
+    } catch(err) {
+      alert('Não foi possível atualizar os dados do cliente!')
+      console.log(err)
     }
   }
 
@@ -78,38 +75,35 @@ const EditUser = (props) => {
       <Profile />
       <NavBar active="Clientes" />
 
-      <Form>
+      <Form className="form" onSubmit={handleUpdateUser} initialData={stateInitial} >
           <h1>Editar cliente</h1>
           <p>Forneça os dados necessários para cadastrar um cliente</p>
 
         <Wrapper>
           <div>
             <label htmlFor="name">Nome do cliente</label>
-            <input
+            <Input
               type="text"
-              defaultValue={user.name}
-              onChange={(event) => setName(event.target.value)}
-            />
+              name="name"
+             />
           </div>
 
           <div className="grid">
             <div>
               <label htmlFor="street">Rua</label>
-                <input
+                <Input
                   type="text"
-                  defaultValue={user.address.street}
-                  onChange={(event) => setStreet(event.target.value)}
-                />
+                  name="address.street"
+                  />
             </div>
 
             <div></div>
 
             <div>
             <label htmlFor="number">Número</label>
-                <input
+                <Input
                   type="text"
-                  defaultValue={user.address.number}
-                  onChange={(event) => setNumber(event.target.value)}
+                  name="address.number"
                 />
             </div>
           </div>
@@ -117,10 +111,9 @@ const EditUser = (props) => {
           <div className="grid">
             <div>
               <label htmlFor="neighborhood">Bairro</label>
-                <input
+                <Input
                   type="text"
-                  defaultValue={user.address.neighborhood}
-                  onChange={(event) => setNeighborhood(event.target.value)}
+                  name="address.neighborhood"
                 />
             </div>
 
@@ -128,10 +121,9 @@ const EditUser = (props) => {
 
             <div>
             <label htmlFor="zipcode">CEP</label>
-                <input
+                <Input
                   type="text"
-                  defaultValue={user.address.zipcode}
-                  onChange={(event) => setZipcode(event.target.value)}
+                  name="address.zipcode"
                 />
             </div>
           </div>
@@ -139,10 +131,9 @@ const EditUser = (props) => {
           <div className="grid">
             <div>
               <label htmlFor="city">Cidade</label>
-                <input
+                <Input
                   type="text"
-                  defaultValue={user.address.city}
-                  onChange={(event) => setCity(event.target.value)}
+                  name="address.city"
                 />
             </div>
 
@@ -150,21 +141,19 @@ const EditUser = (props) => {
 
             <div>
             <label htmlFor="state">Estado</label>
-                <input
+                <Input
                   type="text"
-                  defaultValue={user.address.state}
-                  onChange={(event) => setState(event.target.value)}
+                  name="address.state"
                 />
             </div>
           </div>
 
           <div>
             <label htmlFor="phone">Telefone</label>
-            <input
+            <Input
               type="text"
-              defaultValue={user.phone}
-              onChange={(event) => setPhone(event.target.value)}
-            />
+              name="phone"
+              />
           </div>
           </Wrapper>
 
@@ -172,7 +161,6 @@ const EditUser = (props) => {
             <Button
               icon="/images/icons/enter.svg"
               title="Atualizar dados"
-              onClick={handleUpdateUser}
             />
           </ButtonContainer>
 
