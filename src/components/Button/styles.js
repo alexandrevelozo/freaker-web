@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
-export const Container = styled(Link)`
+export const Container = styled.button`
   display: flex;
   align-items: center;
 
@@ -19,12 +18,16 @@ export const Container = styled(Link)`
   background-color: ${({ background }) => background};
   transition: background-color .2s;
 
+  cursor: pointer;
+
   &:hover {
     background-color: ${({ backgroundHover }) => backgroundHover};
   }
 
   > strong {
     flex: 1;
+
+    font-size: 15.5px;
 
     text-align: center;
     font-weight: 500;
