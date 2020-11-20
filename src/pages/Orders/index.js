@@ -20,7 +20,9 @@ const Orders = () => {
 
   const history = useHistory()
 
-  const handleCreateOrder = async () => {
+  const handleCreateOrder = async (event) => {
+    event.preventDefault()
+
     try {
       const data = {
         user_id: selectedUser,
